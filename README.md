@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# Product Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This is a simple product management system built using React, NodeJS, ExpressJS and MySQL. It allows users to add, view, update, and delete products from a database.
 
-In the project directory, you can run:
+## Setup
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Clone the repository
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+git clone <URL>
+```
 
-### `npm test`
+### Install Dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Navigate to the project directory and install the dependencies for both the client and server.
 
-### `npm run build`
+```bash
+cd frontend
+npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+cd ../backend
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Environment Variables
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Create a `.env` file in the `frontend` directory and add the following variables:
 
-### `npm run eject`
+```bash
+REACT_APP_API_URL=http://localhost:4000/api
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create a `.env` file in the `backend` directory and add the following variables:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+DB_HOST=localhost
+DB_USER=product_user
+DB_PASSWORD=yourpassword
+DB_NAME=product_db
+ENCRYPTION_KEY=yourencryptionkey
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Database Setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Make sure you have MySQL installed and running. Create a new database and user for the application.
 
-## Learn More
+### Create User
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```sql
+CREATE USER 'product_user'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'product_user'@'localhost';
+FLUSH PRIVILEGES;
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Create Database
 
-### Code Splitting
+```sql
+CREATE DATABASE product_db;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### IMPORT SQL FILE (OPTIONAL)
 
-### Analyzing the Bundle Size
+```bash
+mysql -u product_user -p product_db < products_backup.sql
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Start the Server
 
-### Making a Progressive Web App
+Navigate to the `backend` directory and start the server.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+cd backend
+npm start
+```
 
-### Advanced Configuration
+The server will run on `http://localhost:4000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Start the Client
 
-### Deployment
+Navigate to the `frontend` directory and start the client.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+cd frontend
+npm start
+```
 
-### `npm run build` fails to minify
+The client will run on `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Access the Application
+
+Open your web browser and go to `http://localhost:3000` to access the application.
+You should see the product management interface where you can add, view, update, and delete products.
+
+## Features
+
+- Add new products
+- View all products
+- Update existing products
+- Delete products
+- Search products
+- Filter products by SKU, product name, category, material and price
+- Statistics of products
+  - Highest price by category
+  - Product Count by Price Range
+  - Products without Media
+
+## Technologies Used
+
+- React
+- NodeJS
+- ExpressJS
+- MySQL
