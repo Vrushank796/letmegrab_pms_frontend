@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProductList from "./pages/ProductList";
+import AddEditProduct from "./pages/AddEditProduct";
+import NotFound from "./pages/NotFound";
 
 function App() {
+  useEffect(() => {
+    document.title = "Product Management System";
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<ProductList />} />
+        <Route path="/product/add" element={<AddEditProduct />} />
+        <Route path="/product/edit/:id" element={<AddEditProduct />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 
